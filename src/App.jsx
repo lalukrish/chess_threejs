@@ -1,13 +1,13 @@
 import React from "react";
 import "./index.css";
-import Canvas from "./canvas";
+import CanvasModel from "./canvas";
 import Home from "./pages/Home";
 import Customizer from "./pages/Customizer";
 function App() {
   return (
     <main className="app transition-all ease-in">
       <Home />
-      <Canvas />
+      <CanvasModel />
 
       <Customizer />
     </main>
