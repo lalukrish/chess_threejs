@@ -23,6 +23,7 @@ const CustomButton = (props) => {
     >
       {console.log("hd", props.type)}
       {props.title}
+      {console.log("click", props.handleClick)}
     </button>
   );
 };
