@@ -37,7 +37,7 @@ const Customizer = () => {
       case "colorpicker":
         return <ColorPicker />;
       case "filepicker":
-        return <FilePicker />;
+        return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
 
       case "aipicker":
         return <AIPicker />;
@@ -47,6 +47,35 @@ const Customizer = () => {
     }
   };
   console.log("active", acitveEditorTab);
+
+  const handleDecals = (type, result) => {
+    const DecalType = DecalTypes[type];
+    state[DecalType.stateProperty] = result;
+    if (!acitveFilterTab[DecalType.filterTab]) {
+      handleActiveFilterTab(DecalType.filterTab);
+    }
+  };
+
+  const handleActiveFilterTab = (tabName) => {
+    switch (tabName) {
+      case "logoshirt":
+        state.isLogoTexture = !acitveFilterTab[tabName];
+
+        break;
+      case "stylishShirt":
+        state.isFullTexture = !acitveFilterTab[tabName];
+      default:
+        state.isFullTexture = true;
+        state.isLogoTexture = false;
+    }
+  };
+
+  const readFile = (type) => {
+    reader(file).then((result) => {
+      handleDecals(type, result);
+      setActiveEditorTab();
+    });
+  };
 
   return (
     <AnimatePresence>
